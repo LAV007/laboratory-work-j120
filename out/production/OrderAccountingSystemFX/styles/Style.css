@@ -1,0 +1,64 @@
+.inputTXT{
+    -fx-text-fill: #fafafa;
+    -fx-background-color: #343434;
+    -fx-border-color: #fafafa;
+    -fx-border-radius: 20;
+    -fx-padding: 10 20;
+}
+
+.textOrder{
+    -fx-text-fill: #fafafa;
+    -fx-background-color: #343434;
+    -fx-border-color: #fafafa;
+    -fx-border-radius: 10;
+    -fx-padding: 5 10;
+}
+
+.textOrder:hover{
+    -fx-border-color: #12ae12;
+}
+
+.textDate{
+    -fx-text-fill: #fafafa;
+    -fx-background-color: #343434;
+    -fx-border-color: #fafafa;
+    -fx-border-radius: 10;
+    -fx-padding: 5 10;
+}
+
+.textDate:hover{
+    -fx-border-color: #566db9;
+}
+
+.textAddress{
+    -fx-text-fill: #fafafa;
+    -fx-background-color: #343434;
+    -fx-border-color: #fafafa;
+    -fx-border-radius: 10;
+    -fx-padding: 5 10;
+}
+
+.textAddress:hover{
+    -fx-border-color: #fffe00;
+}
+
+.inputTXT:focused{
+    -fx-border-color: #eb34e8;
+}
+
+.inputTXT:hover{
+    -fx-border-color: #ff7200;
+}
+
+.label:hover{
+    -fx-text-fill: #BA4BA0;
+}
+
+.btn:pressed{
+    -fx-border-radius: 10;
+}
+
+.btn:hover{
+    -fx-text-fill: #171010;
+    -fx-translate-y: -3
+}
