@@ -60,7 +60,7 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <TableView focusTraversable="false" layoutX="37.0" layoutY="100.0" prefHeight="106.0" prefWidth="684.0" styleClass="inputTXT" stylesheets="@../../styles/Style.css">
+      <TableView fx:id="productTable" focusTraversable="false" layoutX="37.0" layoutY="100.0" prefHeight="106.0" prefWidth="684.0" styleClass="inputTXT" stylesheets="@../../styles/Style.css">
         <columns>
           <TableColumn fx:id="articleTable" prefWidth="86.0" text="article" />
           <TableColumn fx:id="nameOfProductTable" prefWidth="191.0" text="name of product" />
@@ -69,11 +69,11 @@
             <TableColumn fx:id="stockBalanceTable" prefWidth="127.0" text="stock balance" />
         </columns>
       </TableView>
-      <TableView focusTraversable="false" layoutX="37.0" layoutY="476.0" prefHeight="200.0" prefWidth="684.0" styleClass="inputTXT" stylesheets="@../../styles/Style.css">
+      <TableView fx:id="orderTable" focusTraversable="false" layoutX="37.0" layoutY="476.0" prefHeight="200.0" prefWidth="684.0" styleClass="inputTXT" stylesheets="@../../styles/Style.css">
         <columns>
             <TableColumn fx:id="nameOfPersonTable" prefWidth="89.0" text="name" />
             <TableColumn fx:id="surnameTable" prefWidth="91.0" text="surname" />
-            <TableColumn fx:id="phobeNumberTable" prefWidth="121.0" text="phone number" />
+            <TableColumn fx:id="phoneNumberTable" prefWidth="121.0" text="phone number" />
             <TableColumn fx:id="countryTable" prefWidth="62.0" text="country" />
             <TableColumn fx:id="cityTable" prefWidth="71.0" text="city" />
             <TableColumn fx:id="hawManyTable" prefWidth="68.0" text="how many" />

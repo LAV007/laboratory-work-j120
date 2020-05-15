@@ -33,7 +33,7 @@ public class Product implements Serializable {
     }
 
     public void setPrice(int setPrice) {
-        if(setPrice <= 0) System.err.println("There can't be a zero or negative price");
+        if(setPrice <= 0) System.err.println("There can't be a zero or negative price");// метод должен выбрасывать исключение
         else price = setPrice;
     }
 

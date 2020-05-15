@@ -17,7 +17,8 @@ public class WareHouse {
     public void addProdToList(Product product){
         for(Product p : products)
             if(p.getArticleNumber().equals(product.getArticleNumber())){
-                JOptionPane.showMessageDialog(null, "The list almost contains the product with article " + product.getArticleNumber());
+                JOptionPane.showMessageDialog(null, "The list almost contains the product with article " + product.getArticleNumber(),
+                        "Error", JOptionPane.ERROR_MESSAGE);
                 }
         products.add(product);
     }
