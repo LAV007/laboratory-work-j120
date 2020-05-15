@@ -2,7 +2,6 @@ package ru.avalon.j120.order_accounting_system;
 
 import ru.avalon.j120.order_accounting_system.auxiliary_classes.*;
 import static ru.avalon.j120.order_accounting_system.auxiliary_classes.OrderStatusEnum.*;
-import ru.avalon.j120.order_accounting_system.configuration.Configuration;
 import ru.avalon.j120.order_accounting_system.order_manager.OrderManager;
 import ru.avalon.j120.order_accounting_system.person.Person;
 import ru.avalon.j120.order_accounting_system.person.address.Address;
