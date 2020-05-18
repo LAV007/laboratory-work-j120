@@ -32,6 +32,14 @@ public class Product implements Serializable {
         return stockBalance;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
     public void setPrice(int setPrice) {
         if(setPrice <= 0) System.err.println("There can't be a zero or negative price");// метод должен выбрасывать исключение
         else price = setPrice;

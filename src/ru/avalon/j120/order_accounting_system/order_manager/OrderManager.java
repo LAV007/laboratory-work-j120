@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 public class OrderManager implements Serializable {
     ListOfOrderItems list;
-    ArrayList<Order> orderArrayList = new ArrayList<>();
+    ArrayList<Order> orderArrayList;
     ArrayList<ListOfOrderItems> listOfOrderItems = new ArrayList<>();
 
     public OrderManager(ArrayList<Order> orders){

@@ -30,6 +30,7 @@ public class ApplicationTest {
         //Добавляю новые продукты в список, чтобы записать список на склад:
         //Данный метод не позволяет добавить товар с существующим индексом.
         wareHouse.addProdToList(new Product("f-858", "flowers", "yellow", 20, 420));
+        wareHouse.addProdToList(new Product("f-858", "flowers", "yellow", 20, 420));
 
         //Записываю на склад список продуктов
         //Записываю склад с продуктами в файл:

@@ -2,6 +2,9 @@ package ru.avalon.j120.order_accounting_system.auxiliary_classes;
 
 import java.io.Serializable;
 
+/**
+ *Класс, отвечающий за список заказов
+ */
 public class ListOfOrderItems implements Serializable {
 
     private Product product;
@@ -25,6 +28,10 @@ public class ListOfOrderItems implements Serializable {
 
     public int getHowManyOrdered() {
         return howManyOrdered;
+    }
+
+    public Product getProduct() {
+        return product;
     }
 
     @Override
