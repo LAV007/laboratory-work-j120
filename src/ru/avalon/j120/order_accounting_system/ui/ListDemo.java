@@ -1,5 +1,7 @@
 package ru.avalon.j120.order_accounting_system.ui;
 
+import ru.avalon.j120.order_accounting_system.auxiliary_classes.ListOfOrderItems;
+
 import java.awt.BorderLayout;
 import javax.swing.*;
 
@@ -41,12 +43,20 @@ public class ListDemo extends JFrame {
 		JToolBar bottomTB = new JToolBar();
 
 		//Создаю кнопку добавлния позиции заказа в заказ
-		JButton addPosition = new JButton("Add position");
+		JButton addPosition = new JButton("Add position..");
 		//Создаю кнопку удаления позиции заказа из заказа
 		JButton removePosition = new JButton("Remove position");
 
 		//Обрадотка нажатия на кнопку Добавить позицию
-		addPosition.addActionListener(event -> tableModel.addPosition());
+		//addPosition.addActionListener(event -> tableModel.addPosition());
+		addPosition.addActionListener(event -> {
+			MyDataDialog dlg = new MyDataDialog(this);
+			dlg.setVisible(true);
+			if(dlg.isOkPressed()){
+				ListOfOrderItems listOfOrderItems = dlg.buildListOfOrderItemsFromFields();
+				tableModel.addPosition(listOfOrderItems);
+			}
+		});
 		//Обрботка события при нажатии на кнопку "Remove position" (удаление ВЫБРАННОЙ(ЫХ) строки)
 		removePosition.addActionListener(event ->{
 			int[] selectedPositions = orderItems.getSelectedRows();

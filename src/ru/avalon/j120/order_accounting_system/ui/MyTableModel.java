@@ -82,14 +82,20 @@ public class MyTableModel implements TableModel {
         listeners.remove(tableModelListener);
     }
 
-    public void addPosition(){
+    public void addPosition(ListOfOrderItems list){
+        listOfOrderItems.remove(list);
+        TableModelEvent event = new TableModelEvent(this, listOfOrderItems.size() - 1, listOfOrderItems.size() - 1,
+                TableModelEvent.ALL_COLUMNS, TableModelEvent.DELETE);
+        for(TableModelListener listener: listeners)
+            listener.tableChanged(event);
+        /*
         ListOfOrderItems list = new ListOfOrderItems(new Product("f-858", "flowers", "yellow", 20, 420), 2);
         listOfOrderItems.add(list);
         TableModelEvent event = new TableModelEvent(this, listOfOrderItems.size()-1, listOfOrderItems.size()-1,
                 TableModelEvent.ALL_COLUMNS, TableModelEvent.INSERT);
         for(TableModelListener listener: listeners)
             listener.tableChanged(event);
-
+*/
 
     }
 

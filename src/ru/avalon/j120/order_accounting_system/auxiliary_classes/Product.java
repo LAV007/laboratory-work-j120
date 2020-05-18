@@ -1,5 +1,6 @@
 package ru.avalon.j120.order_accounting_system.auxiliary_classes;
 
+import javax.swing.*;
 import java.io.Serializable;
 
 public class Product implements Serializable {
@@ -20,6 +21,13 @@ public class Product implements Serializable {
     public Product(String articleNumber, String name, String color, int price, int stockBalance) {
         this(articleNumber,  name,  price,  stockBalance);
         this.color = color;
+    }
+
+    public Product(JTextField articleNumberTextField, JTextField nameTextField, JTextField colorTextField, JTextField priceTextField) {
+        articleNumber = String.valueOf(articleNumberTextField);
+        name = String.valueOf(nameTextField);
+        color = String.valueOf(colorTextField);
+        price = Integer.parseInt(priceTextField.toString());
     }
 
     public String getArticleNumber() {
