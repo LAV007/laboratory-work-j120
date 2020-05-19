@@ -8,7 +8,7 @@ import javax.swing.*;
 public class ListDemo extends JFrame {
 	private JTable orders;
 	private JTable orderItems;
-	private MyTableModel tableModel = new MyTableModel();
+	public MyTableModel tableModel = new MyTableModel();
 	
 	public ListDemo(){
 		super("Order Accounting System");
@@ -53,7 +53,7 @@ public class ListDemo extends JFrame {
 			MyDataDialog dlg = new MyDataDialog(this);
 			dlg.setVisible(true);
 			if(dlg.isOkPressed()){
-				ListOfOrderItems listOfOrderItems = dlg.buildListOfOrderItemsFromFields();
+				ListOfOrderItems listOfOrderItems = dlg.addRow();
 				tableModel.addPosition(listOfOrderItems);
 			}
 		});

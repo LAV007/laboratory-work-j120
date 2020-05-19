@@ -19,60 +19,54 @@ public class MyDataDialog extends MyAbstractModalDialog {
 
         JPanel controlsPane = getControlsPane();
 
-        JPanel jPanel = new JPanel();
-        articleNumberTextField = new JTextField(40);
+        JPanel jPanel = new JPanel(new FlowLayout((FlowLayout.LEFT)));
+        articleNumberTextField = new JTextField(15);
         JLabel lblArticle = new JLabel("Article");
         lblArticle.setLabelFor(articleNumberTextField);
         jPanel.add(lblArticle);
         jPanel.add(articleNumberTextField);
         controlsPane.add(jPanel);
 
-        jPanel = new JPanel();
-        nameTextField = new JTextField(40);
+        jPanel = new JPanel(new FlowLayout((FlowLayout.LEFT)));
+        nameTextField = new JTextField(15);
         JLabel lblName = new JLabel("Name");
         lblName.setLabelFor(nameTextField);
         jPanel.add(lblName);
-        jPanel.add(articleNumberTextField);
+        jPanel.add(nameTextField);
         controlsPane.add(jPanel);
 
-        jPanel = new JPanel();
-        colorTextField = new JTextField(40);
+        jPanel = new JPanel(new FlowLayout((FlowLayout.LEFT)));
+        colorTextField = new JTextField(15);
         JLabel lblColor = new JLabel("Color");
         lblColor.setLabelFor(colorTextField);
         jPanel.add(lblColor);
         jPanel.add(colorTextField);
         controlsPane.add(jPanel);
 
-        jPanel = new JPanel();
+        jPanel = new JPanel(new FlowLayout((FlowLayout.LEFT)));
         priceTextField = new JFormattedTextField(NumberFormat.getIntegerInstance());
+        priceTextField.setColumns(11);
         JLabel lblPrice = new JLabel("Price per unit");
         lblPrice.setLabelFor(priceTextField);
         jPanel.add(lblPrice);
         jPanel.add(priceTextField);
         controlsPane.add(jPanel);
 
-        jPanel = new JPanel();
+        jPanel = new JPanel(new FlowLayout((FlowLayout.LEFT)));
         howManyOrderedTextField = new JFormattedTextField(NumberFormat.getIntegerInstance());
+        howManyOrderedTextField.setColumns(8);
         JLabel lblHowManyOrdered = new JLabel("How many ordered");
         lblHowManyOrdered.setLabelFor(howManyOrderedTextField);
         jPanel.add(lblHowManyOrdered);
         jPanel.add(howManyOrderedTextField);
         controlsPane.add(jPanel);
-/*
-        jPanel = new JPanel();
-        totalAmountTextField = new JFormattedTextField(NumberFormat.getIntegerInstance());
-        JLabel lblTotalAmount = new JLabel("Price total");
-        lblTotalAmount.setLabelFor(totalAmountTextField);
-        jPanel.add(lblTotalAmount);
-        jPanel.add(totalAmountTextField);
-        controlsPane.add(jPanel);
-*/
+
+        pack();
     }
 
-    public ListOfOrderItems buildListOfOrderItemsFromFields(){
-        Product product = new Product(articleNumberTextField, nameTextField, colorTextField, priceTextField);
+    protected ListOfOrderItems addRow(){
+        Product product = new Product(articleNumberTextField.getText(), nameTextField.getText(), colorTextField.getText(), Integer.parseInt(priceTextField.getText()));
         int howMany = Integer.parseInt(howManyOrderedTextField.getText());
-        //int totalAm = Integer.parseInt(totalAmountTextField.getText());
         return new ListOfOrderItems(product, howMany);
     }
 }

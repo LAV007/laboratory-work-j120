@@ -83,9 +83,9 @@ public class MyTableModel implements TableModel {
     }
 
     public void addPosition(ListOfOrderItems list){
-        listOfOrderItems.remove(list);
+        listOfOrderItems.add(list);
         TableModelEvent event = new TableModelEvent(this, listOfOrderItems.size() - 1, listOfOrderItems.size() - 1,
-                TableModelEvent.ALL_COLUMNS, TableModelEvent.DELETE);
+                TableModelEvent.ALL_COLUMNS, TableModelEvent.INSERT);
         for(TableModelListener listener: listeners)
             listener.tableChanged(event);
         /*

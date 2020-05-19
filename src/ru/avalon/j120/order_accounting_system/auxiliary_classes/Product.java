@@ -23,11 +23,11 @@ public class Product implements Serializable {
         this.color = color;
     }
 
-    public Product(JTextField articleNumberTextField, JTextField nameTextField, JTextField colorTextField, JTextField priceTextField) {
-        articleNumber = String.valueOf(articleNumberTextField);
-        name = String.valueOf(nameTextField);
-        color = String.valueOf(colorTextField);
-        price = Integer.parseInt(priceTextField.toString());
+    public Product(String articleNumber, String name, String color, int price) {
+        this.articleNumber = articleNumber;
+        this.name = name;
+        setPrice(price);
+        this.color = color;
     }
 
     public String getArticleNumber() {
