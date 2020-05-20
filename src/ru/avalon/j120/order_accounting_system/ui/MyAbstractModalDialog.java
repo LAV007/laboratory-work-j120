@@ -12,7 +12,7 @@ public class MyAbstractModalDialog extends JDialog {
     private boolean okPressed;
 
     public MyAbstractModalDialog(Frame owner, String title){
-        super(owner, title);
+        super(owner, title, true);
 
         controlsPane = new JPanel();
         controlsPane.setLayout(new BoxLayout(controlsPane, BoxLayout.Y_AXIS));
