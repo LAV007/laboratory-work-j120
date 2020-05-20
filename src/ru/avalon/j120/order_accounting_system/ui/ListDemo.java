@@ -8,7 +8,8 @@ import javax.swing.*;
 public class ListDemo extends JFrame {
 	private JTable orders;
 	private JTable orderItems;
-	public MyTableModel tableModel = new MyTableModel();
+	private OrderItemsModel tableModel = new OrderItemsModel();
+	private OrdersModel ordersModel = new OrdersModel();
 	
 	public ListDemo(){
 		super("Order Accounting System");
@@ -19,8 +20,14 @@ public class ListDemo extends JFrame {
 		JToolBar topTB = new JToolBar();
 		topTB.add(new JButton("Create order"));
 		top.add(topTB, BorderLayout.NORTH);
-		
-		orders = new JTable(new Object[][] {},
+
+		topTB.add(new JButton("Create customer..."));
+		top.add(topTB, BorderLayout.NORTH);
+
+		topTB.add(new JButton("Remove customer"));
+		top.add(topTB, BorderLayout.NORTH);
+
+		orders = new JTable(/*new Object[][] {},
 				new String[] {
 						"Year", "Moth", "Day", //integers
 						"Name", "Patronymic", "Surname",
@@ -28,7 +35,7 @@ public class ListDemo extends JFrame {
 						"Phone number",
 						"Discount",
 						"Status"
-				});
+				}*/ordersModel);
 		
 		JPanel topTblPnl = new JPanel(new BorderLayout());
 		topTblPnl.add(orders.getTableHeader(), BorderLayout.NORTH);
