@@ -11,6 +11,10 @@ public class Passport implements Serializable  {
         this.surName = surName;
     }
 
+    public String getPatronymic() {
+        return patronymic;
+    }
+
     public void setName (String setname) {
         this.name = setname;
     }

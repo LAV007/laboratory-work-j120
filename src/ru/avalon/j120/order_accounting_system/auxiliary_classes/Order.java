@@ -32,6 +32,25 @@ public class Order implements Serializable {
         this.discountPercentage = discountPercentage;
     }
 
+    public Order(LocalDate dateOfCreate, Person contactPerson, Address deliveryAddress,
+                 String contactPhoneNumber, int discountPercentage, String orderStatus) {
+        this.dateOfCreate = dateOfCreate;
+        this.contactPerson = contactPerson;
+        this.deliveryAddress = deliveryAddress;
+        this.contactPhoneNumber = contactPhoneNumber;
+        this.discountPercentage = discountPercentage;
+        //this.orderStatus = orderStatus;
+    }
+
+    public LocalDate getDateOfCreateY() {
+        return dateOfCreate;
+    }
+    public LocalDate getDateOfCreateM() {
+        return dateOfCreate;
+    }
+    public LocalDate getDateOfCreateD() {
+        return dateOfCreate;
+    }
     public LocalDate getDateOfCreate() {
         return dateOfCreate;
     }
@@ -52,6 +71,25 @@ public class Order implements Serializable {
     }
     public ArrayList getListOfOrderItems() {
         return listOfOrderItems;
+    }
+
+    public void setDateOfCreate(LocalDate dateOfCreate) {
+        this.dateOfCreate = dateOfCreate;
+    }
+    public void setContactPerson(Person contactPerson) {
+        this.contactPerson = contactPerson;
+    }
+    public void setDeliveryAddress(Address deliveryAddress) {
+        this.deliveryAddress = deliveryAddress;
+    }
+    public void setContactPhoneNumber(String contactPhoneNumber) {
+        this.contactPhoneNumber = contactPhoneNumber;
+    }
+    public void setDiscountPercentage(int discountPercentage) {
+        this.discountPercentage = discountPercentage;
+    }
+    public void setOrderStatus(OrderStatusEnum orderStatus) {
+        this.orderStatus = orderStatus;
     }
 
     /**

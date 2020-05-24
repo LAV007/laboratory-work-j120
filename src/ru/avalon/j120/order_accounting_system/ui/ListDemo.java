@@ -1,7 +1,7 @@
 package ru.avalon.j120.order_accounting_system.ui;
 
 import ru.avalon.j120.order_accounting_system.auxiliary_classes.ListOfOrderItems;
-
+import ru.avalon.j120.order_accounting_system.auxiliary_classes.Order;
 import java.awt.BorderLayout;
 import javax.swing.*;
 
@@ -13,18 +13,23 @@ public class ListDemo extends JFrame {
 	
 	public ListDemo(){
 		super("Order Accounting System");
-		setBounds(300, 200, 1300, 600);
+		setBounds(30, 100, 1300, 600);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		
+		JButton createOrder = new JButton("Create order");
+
+		createOrder.addActionListener(event -> {
+			OrderDataDialog dlg = new OrderDataDialog(this);
+			dlg.setVisible(true);
+			if(dlg.isOkPressed()){
+				Order order = dlg.addRow();
+				ordersModel.addPosition(order);
+			}
+		});
+
 		JPanel top = new JPanel(new BorderLayout());
 		JToolBar topTB = new JToolBar();
-		topTB.add(new JButton("Create order"));
-		top.add(topTB, BorderLayout.NORTH);
 
-		topTB.add(new JButton("Create customer..."));
-		top.add(topTB, BorderLayout.NORTH);
-
-		topTB.add(new JButton("Remove customer"));
+		topTB.add(createOrder);
 		top.add(topTB, BorderLayout.NORTH);
 
 		orders = new JTable(/*new Object[][] {},
@@ -36,6 +41,7 @@ public class ListDemo extends JFrame {
 						"Discount",
 						"Status"
 				}*/ordersModel);
+
 		
 		JPanel topTblPnl = new JPanel(new BorderLayout());
 		topTblPnl.add(orders.getTableHeader(), BorderLayout.NORTH);
@@ -57,13 +63,17 @@ public class ListDemo extends JFrame {
 		//Обрадотка нажатия на кнопку Добавить позицию
 		//addPosition.addActionListener(event -> tableModel.addPosition());
 		addPosition.addActionListener(event -> {
-			MyDataDialog dlg = new MyDataDialog(this);
+
+
+			ProductDataDialog dlg = new ProductDataDialog(this);
 			dlg.setVisible(true);
 			if(dlg.isOkPressed()){
 				ListOfOrderItems listOfOrderItems = dlg.addRow();
 				tableModel.addPosition(listOfOrderItems);
 			}
-		});
+
+
+			});
 		//Обрботка события при нажатии на кнопку "Remove position" (удаление ВЫБРАННОЙ(ЫХ) строки)
 		removePosition.addActionListener(event ->{
 			int[] selectedPositions = orderItems.getSelectedRows();

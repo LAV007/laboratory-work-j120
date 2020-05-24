@@ -1,11 +1,14 @@
 package ru.avalon.j120.order_accounting_system.ui;
 
-import ru.avalon.j120.order_accounting_system.auxiliary_classes.*;
+import ru.avalon.j120.order_accounting_system.auxiliary_classes.ListOfOrderItems;
+import ru.avalon.j120.order_accounting_system.auxiliary_classes.Product;
+
 import javax.swing.*;
 import java.awt.*;
 import java.text.NumberFormat;
 
-public class MyDataDialog extends MyAbstractModalDialog {
+
+public class ProductDataDialog extends MyAbstractModalDialog {
     private JTextField articleNumberTextField;
     private JTextField nameTextField;
     private JTextField colorTextField;
@@ -14,7 +17,7 @@ public class MyDataDialog extends MyAbstractModalDialog {
     //private JTextField totalAmountTextField;
 
 
-    public MyDataDialog(Frame owner) {
+    public ProductDataDialog(Frame owner) {
         super(owner, "Adding order`s position");
 
         JPanel controlsPane = getControlsPane();

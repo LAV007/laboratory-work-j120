@@ -38,7 +38,8 @@ public class OrderManager implements Serializable {
     public void adddOrderPosition(Product product, int howMany){
         ListOfOrderItems list = new ListOfOrderItems(product, howMany);
         if (listOfOrderItems.contains(product)){
-            JOptionPane.showMessageDialog(null, "This order is already contains this product");
+            throw new IllegalArgumentException("This order is already contains this product");
+            //JOptionPane.showMessageDialog(null, "This order is already contains this product");
         }
         else listOfOrderItems.add(list);
     }

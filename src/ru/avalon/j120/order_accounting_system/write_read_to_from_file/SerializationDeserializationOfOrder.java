@@ -15,15 +15,19 @@ public class SerializationDeserializationOfOrder {
 
     public void doSerialization(ArrayList<OrderManager> list) throws IOException {
         FileOutputStream fos = new FileOutputStream(ordersConfig);
-        ObjectOutputStream oos = new ObjectOutputStream(fos);
-        oos.writeObject(list);
-        oos.close();
+        try(ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+            oos.writeObject(list);
+        }
     }
 
     public void doDeserialization() throws IOException, ClassNotFoundException {
-        FileInputStream fis = new FileInputStream(ordersConfig);
-        ObjectInputStream ois = new ObjectInputStream(fis);
-        list = (ArrayList) ois.readObject();
-        ois.close();
+        File file = new File(Configuration.getInitialisation().getProperties().getProperty("orders"));
+        if(!file.exists()){
+            ArrayList<OrderManager> orders = new ArrayList<>();
+        }
+        FileInputStream fis = new FileInputStream(file);
+        try (ObjectInputStream ois = new ObjectInputStream(fis)) {
+            list = (ArrayList) ois.readObject();
+        }
     }
 }

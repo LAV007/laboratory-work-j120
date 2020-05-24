@@ -17,8 +17,9 @@ public class WareHouse {
     public void addProdToList(Product product){
         for(Product p : products)
             if(p.getArticleNumber().equals(product.getArticleNumber())){
-                JOptionPane.showMessageDialog(null, "The list almost contains the product with article " + product.getArticleNumber(),
-                        "Error", JOptionPane.ERROR_MESSAGE);
+                throw new IllegalArgumentException("The list almost contains the product with article");
+                //JOptionPane.showMessageDialog(null, "The list almost contains the product with article " + product.getArticleNumber(),
+                        //"Error", JOptionPane.ERROR_MESSAGE);
                 }
         products.add(product);
     }
@@ -30,6 +31,4 @@ public class WareHouse {
     public ArrayList<Product> getProductsPosition(){
         return products;
     }
-
-
 }

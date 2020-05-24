@@ -1,17 +1,13 @@
 package ru.avalon.j120.order_accounting_system.ui;
 
-import ru.avalon.j120.order_accounting_system.auxiliary_classes.ListOfOrderItems;
 import ru.avalon.j120.order_accounting_system.auxiliary_classes.Order;
-
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
+import javax.swing.event.*;
 import javax.swing.table.TableModel;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class OrdersModel implements TableModel {
     private final String[] columnNames = {
-            "Year", "Moth", "Day", //integers
+            "Year", "Moth", "Day",
             "Name", "Patronymic", "Surname",
             "Country", "Post code", "Region", "City", "Street", "House`s number", "Flat`s number",
             "Phone number",
@@ -19,13 +15,23 @@ public class OrdersModel implements TableModel {
             "Status"
     };
     private final Class<?>[] columnTypes = {
+            Integer.class,
+            Integer.class,
+            Integer.class,
+            String.class,
+            String.class,
+            String.class,
+            String.class,
+            String.class,
+            String.class,
+            String.class,
+            String.class,
             String.class,
             String.class,
             String.class,
             Integer.class,
-            Integer.class,
-            Integer.class,
-            Integer.class
+            String.class
+
     };
 
     private List<Order> orders;
@@ -57,14 +63,24 @@ public class OrdersModel implements TableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Order orderPosition = orders.get(rowIndex);
+        Order order = orders.get(rowIndex);
         switch(columnIndex){
-            case 0: return orderPosition.getDateOfCreate();
-            case 1: return orderPosition.getContactPerson();
-            case 2: return orderPosition.getDeliveryAddress();
-            case 3: return orderPosition.getContactPhoneNumber();
-            case 4: return orderPosition.getDiscountPercentage();
-            case 5: return orderPosition.getOrderStatus();
+            case 0: return order.getDateOfCreateY();
+            case 1: return order.getDateOfCreateM();
+            case 2: return order.getDateOfCreateD();
+            case 3: return order.getContactPerson().getPass().getName();
+            case 4: return order.getContactPerson().getPass().getPatronumic();
+            case 5: return order.getContactPerson().getPass().getSurName();
+            case 6: return order.getDeliveryAddress().getCountry();
+            case 7: return order.getDeliveryAddress().getPostCode();
+            case 8: return order.getDeliveryAddress().getRegion();
+            case 9: return order.getDeliveryAddress().getCity();
+            case 10: return order.getDeliveryAddress().getStreet();
+            case 11: return order.getDeliveryAddress().getHousesNumber();
+            case 12: return order.getDeliveryAddress().getFlatsNumber();
+            case 13: return order.getContactPhoneNumber();
+            case 14: return order.getDiscountPercentage();
+            case 15: return order.getOrderStatus();
             default:
                 throw new Error ("Unreachable place.");
         }
