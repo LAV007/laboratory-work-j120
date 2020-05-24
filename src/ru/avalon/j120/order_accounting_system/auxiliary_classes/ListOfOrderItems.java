@@ -18,7 +18,7 @@ public class ListOfOrderItems implements Serializable {
     }
 
     public void setHowManyOrdered(int howManyOrdered) {
-        if (howManyOrdered > product.getStockBalance()) System.out.println("Not enough product in the stock.");
+        if (howManyOrdered > product.getStockBalance()) throw new IllegalArgumentException("Not enough product in the stock.");//System.out.println("Not enough product in the stock.");
         this.howManyOrdered = howManyOrdered;
     }
 

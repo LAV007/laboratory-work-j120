@@ -63,9 +63,10 @@ public class ApplicationTest {
 
         //Создаю список, хранящий заказы
         ArrayList<OrderManager> orderManagers = new ArrayList<>();
+        orderManagers.add(orderManager);
 
         //Вывожу отдельный заказ:
-        System.out.println(orderManager.getOrders().get(0));
+        System.out.println(orderManagers.get(0));
         //Вывожу детальные данные о заказе (для заполнения таблици в окне программы)
         System.out.println(orderManager.getOrders().get(0).getContactPerson());
         System.out.println(orderManager.getOrders().get(0).getContactPhoneNumber());

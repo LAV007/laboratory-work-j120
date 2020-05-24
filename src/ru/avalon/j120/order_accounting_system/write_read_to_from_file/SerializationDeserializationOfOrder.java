@@ -21,9 +21,9 @@ public class SerializationDeserializationOfOrder {
     }
 
     public void doDeserialization() throws IOException, ClassNotFoundException {
-        File file = new File(Configuration.getInitialisation().getProperties().getProperty("orders"));
+        File file = new File(ordersConfig);
         if(!file.exists()){
-            ArrayList<OrderManager> orders = new ArrayList<>();
+            file.createNewFile();
         }
         FileInputStream fis = new FileInputStream(file);
         try (ObjectInputStream ois = new ObjectInputStream(fis)) {

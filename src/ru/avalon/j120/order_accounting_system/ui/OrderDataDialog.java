@@ -169,7 +169,7 @@ public class OrderDataDialog extends MyAbstractModalDialog {
         pack();
     }
 
-    protected Order addRow(){
+   protected Order addRow(){
         Order order = new Order(LocalDate.of(Integer.parseInt(yearNumberTextField.getText()), Integer.parseInt(mothTextField.getText()), Integer.parseInt(dayTextField.getText())),
                                 new Person(new Passport(nameTextField.getText(), patronymicTextField.getText(), surnameTextField.getText())),
                                 new Address(countryTextField.getText(), postCodeTextField.getText(), regionTextField.getText(), cityTextField.getText(),streetTextField.getText(),  houseNumberTextField.getText(), flatNumberTextField.getText()),
