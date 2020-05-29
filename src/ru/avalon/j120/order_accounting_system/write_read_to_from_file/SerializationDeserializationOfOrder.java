@@ -8,20 +8,22 @@ import java.util.ArrayList;
 public class SerializationDeserializationOfOrder {
     Configuration configuration = Configuration.getInitialisation();
     final String ordersConfig = configuration.getProperties().getProperty("orders");
+    File file = new File(ordersConfig);
+
     ArrayList<OrderManager> list = new ArrayList<>();
 
     public SerializationDeserializationOfOrder() throws IOException {
     }
 
     public void doSerialization(ArrayList<OrderManager> list) throws IOException {
-        FileOutputStream fos = new FileOutputStream(ordersConfig);
+        FileOutputStream fos = new FileOutputStream(file);
         try(ObjectOutputStream oos = new ObjectOutputStream(fos)) {
             oos.writeObject(list);
         }
     }
 
     public void doDeserialization() throws IOException, ClassNotFoundException {
-        File file = new File(ordersConfig);
+
         if(!file.exists()){
             file.createNewFile();
         }
