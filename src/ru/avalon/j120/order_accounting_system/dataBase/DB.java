@@ -2,7 +2,7 @@ package ru.avalon.j120.order_accounting_system.dataBase;
 
 import java.sql.*;
 
-public class DB {
+public class DB implements AutoCloseable {
 
     // Подключение к БД
     private static final String HOST = "localhost";
@@ -69,8 +69,10 @@ public class DB {
         String strSql = "CREATE TABLE IF NOT EXISTS " + newTableName +
                 " (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(50), password VARCHAR(50))" +
                 " ENGINE=MYISAM;";
-        Statement statement = getDbConnection().createStatement();
-        statement.executeUpdate(strSql);
+        try(Statement statement = dbConn.createStatement())
+        {
+            statement.executeUpdate(strSql);
+        }
     }
 
     /**
@@ -80,7 +82,7 @@ public class DB {
      * @throws SQLException
      */
     public void createOrdersTable(String nameOfOrdersTable) throws ClassNotFoundException, SQLException {
-        String strSql = "CREATE TABLE IF NOT EXISTS" + nameOfOrdersTable + " (" +
+        String strSql = "CREATE TABLE IF NOT EXISTS " + nameOfOrdersTable + " (" +
                 " id INT NOT NULL AUTO_INCREMENT," +
                 " dateOfCreate DATE NOT NULL," +
                 " contactPerson VARCHAR (100) NOT NULL," +
@@ -113,5 +115,10 @@ public class DB {
                 ");";
         Statement statement = getDbConnection().createStatement();
         statement.executeUpdate(strSql);
+    }
+
+    @Override
+    public void close() throws Exception {
+        dbConn.close();
     }
 }

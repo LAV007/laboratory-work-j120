@@ -15,7 +15,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class ApplicationTest {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
 
     try {
@@ -90,18 +90,16 @@ public class ApplicationTest {
             e.printStackTrace();
         }
 
-        DB db = new DB();
-        try {
+
+        try (DB db = new DB()) {
             //db.isConnected();
             //db.createDataBase("orderAccountingSystem");
             db.createProductsTable("products");
             //db.createOrdersTable("orders");
             //db.createListOfOrderItemsTable("listOfOrderItems");
             //db.createNewTable("newTable");
-        } catch (SQLException throwables) {
+        } catch (Exception throwables) {
             throwables.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
         }
     }
 }
