@@ -2,16 +2,22 @@ package ru.avalon.j120.order_accounting_system;
 
 import ru.avalon.j120.order_accounting_system.auxiliary_classes.*;
 import static ru.avalon.j120.order_accounting_system.auxiliary_classes.OrderStatusEnum.*;
+
+import ru.avalon.j120.order_accounting_system.dataBase.DB;
 import ru.avalon.j120.order_accounting_system.order_manager.OrderManager;
 import ru.avalon.j120.order_accounting_system.person.Person;
 import ru.avalon.j120.order_accounting_system.person.address.Address;
 import ru.avalon.j120.order_accounting_system.person.passport.Passport;
 import ru.avalon.j120.order_accounting_system.write_read_to_from_file.*;
+
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class ApplicationTest {
     public static void main(String[] args) {
+
+
     try {
         // Создаю продукты:
         Product milk = new Product("m-354", "milk", "color", 10, 110);
@@ -81,6 +87,20 @@ public class ApplicationTest {
         serDeserOfOrder.doDeserialization();
 
     } catch (Exception e){
+            e.printStackTrace();
+        }
+
+        DB db = new DB();
+        try {
+            //db.isConnected();
+            //db.createDataBase("orderAccountingSystem");
+            db.createProductsTable("products");
+            //db.createOrdersTable("orders");
+            //db.createListOfOrderItemsTable("listOfOrderItems");
+            //db.createNewTable("newTable");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
