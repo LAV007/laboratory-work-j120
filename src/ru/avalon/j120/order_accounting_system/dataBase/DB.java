@@ -51,7 +51,7 @@ public class DB implements AutoCloseable {
     }
 
     /**
-     * Созданин таблицы продуктов
+     * Создание таблицы продуктов
      * @param nameOfProductsTable
      * @throws ClassNotFoundException
      * @throws SQLException
@@ -76,7 +76,7 @@ public class DB implements AutoCloseable {
     }
 
     /**
-     * Созданин таблицы заказов
+     * Создание таблицы заказов
      * @param nameOfOrdersTable
      * @throws ClassNotFoundException
      * @throws SQLException
@@ -97,22 +97,21 @@ public class DB implements AutoCloseable {
     }
 
     /**
-     * Созданин таблицы список позиций заказа
+     * Создание таблицы список позиций заказа
      * @param nameOfListOfOrderItemsTable
      * @throws ClassNotFoundException
      * @throws SQLException
      */
     public void createListOfOrderItemsTable(String nameOfListOfOrderItemsTable) throws ClassNotFoundException, SQLException {
-        String strSql = "CREATE TABLE IF NOT EXISTS" + nameOfListOfOrderItemsTable + " (" +
-                " id  INT NOT NULL AUTO_INCREMENT," +
+        String strSql = "CREATE TABLE IF NOT EXISTS " + nameOfListOfOrderItemsTable + " (" +
+                " id INT NOT NULL AUTO_INCREMENT," +
                 " prodId INT NOT NULL," +
                 " orderID INT NOT NULL," +
                 " howManyOrdered INT NOT NULL," +
                 " totalAmount INT NOT NULL," +
                 " PRIMARY KEY (id)," +
-                " FOREIGN KEY (prodId) REFERENCES products (id)," +
-                " FOREIGN KEY (orderID) REFERENCES orders (id)" +
-                ");";
+                " FOREIGN KEY (prodId) REFERENCES products(id)," +
+                " FOREIGN KEY (orderId) REFERENCES orders(id));";
         Statement statement = getDbConnection().createStatement();
         statement.executeUpdate(strSql);
     }

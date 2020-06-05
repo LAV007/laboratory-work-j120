@@ -25,7 +25,7 @@ public class SerializationDeserializationOfOrder {
     public void doDeserialization() throws IOException, ClassNotFoundException {
 
         if(!file.exists()){
-            file.createNewFile();
+            return;
         }
         FileInputStream fis = new FileInputStream(file);
         try (ObjectInputStream ois = new ObjectInputStream(fis)) {

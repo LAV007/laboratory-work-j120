@@ -92,12 +92,12 @@ public class ApplicationTest {
 
 
         try (DB db = new DB()) {
-            //db.isConnected();
+            db.isConnected();
             //db.createDataBase("orderAccountingSystem");
-            db.createProductsTable("products");
+            //db.createProductsTable("products");
             //db.createOrdersTable("orders");
-            //db.createListOfOrderItemsTable("listOfOrderItems");
-            //db.createNewTable("newTable");
+            db.createListOfOrderItemsTable("listOfOrderItems");
+            db.createNewTable("newTable2");
         } catch (Exception throwables) {
             throwables.printStackTrace();
         }
