@@ -35,6 +35,9 @@ public class OrdersModel implements TableModel {
     };
 
     private List<Order> orders;
+
+    private List<ArrayList> orderList = new ArrayList<>();
+
     private List<TableModelListener> listeners = new ArrayList<>();
 
     public OrdersModel() {
@@ -65,9 +68,9 @@ public class OrdersModel implements TableModel {
     public Object getValueAt(int rowIndex, int columnIndex) {
         Order order = orders.get(rowIndex);
         switch(columnIndex){
-            case 0: return order.getDateOfCreateY();
-            case 1: return order.getDateOfCreateM();
-            case 2: return order.getDateOfCreateD();
+            case 0: return order.getYear();
+            case 1: return order.getMonth();
+            case 2: return order.getDay();
             case 3: return order.getContactPerson().getPass().getName();
             case 4: return order.getContactPerson().getPass().getPatronumic();
             case 5: return order.getContactPerson().getPass().getSurName();
@@ -113,6 +116,20 @@ public class OrdersModel implements TableModel {
         for(TableModelListener listener: listeners)
             listener.tableChanged(event);
     }
+
+    public void addPositions(ArrayList <Order> list){
+        for(int i = 0; i < list.size(); i++){
+            orders.add(list.get(i));
+        }
+
+
+        TableModelEvent event = new TableModelEvent(this, orders.size() - 1, orders.size() - 1,
+                TableModelEvent.ALL_COLUMNS, TableModelEvent.INSERT);
+
+        for(TableModelListener listener: listeners)
+            listener.tableChanged(event);
+    }
+
 
     public void removePositionWithIndex(int rowNdx){
         orders.remove(rowNdx);

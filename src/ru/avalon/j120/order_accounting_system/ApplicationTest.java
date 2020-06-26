@@ -10,7 +10,6 @@ import ru.avalon.j120.order_accounting_system.person.address.Address;
 import ru.avalon.j120.order_accounting_system.person.passport.Passport;
 import ru.avalon.j120.order_accounting_system.write_read_to_from_file.*;
 
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -95,19 +94,20 @@ public class ApplicationTest {
             //db.createDataBase("orderAccountingSystem");
             //db.createProductsTable("products");
             db.createOrdersTable("orders");
-            db.addOrder(7,
+            db.addOrder(3,
                     2020, 06, 26,
-                    "John", "Edward", "Smith",
+                    "name3", "Edward", "surname",
                     "U.S.A", "15848", "Los Angeles", "Oxnard", "Gold\\'s Gym", "34", "7",
                     "+79811895815", 10, "PREPARED");
 
-            String s = db.getOrder("orders").toString();
+            System.out.println("__________________________");
+            //String s = db.getOrders("orders").toString();
 
-            System.out.println(s);
+            //System.out.println(s);
             //db.createListOfOrderItemsTable("listOfOrderItems");
             //db.createNewTable("newTable2");
-        } catch (Exception throwables) {
-            throwables.printStackTrace();
+        } catch (Exception throwable) {
+            throwable.printStackTrace();
         }
 
 

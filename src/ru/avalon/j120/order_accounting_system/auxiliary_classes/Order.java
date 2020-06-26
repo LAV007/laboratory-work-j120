@@ -19,6 +19,22 @@ public class Order implements Serializable {
     private OrderStatusEnum orderStatus;
     public ArrayList<ListOfOrderItems> listOfOrderItems;
 
+    public int year;
+    public int month;
+    public int day;
+
+    public int getYear() {
+        return year;
+    }
+
+    public int getMonth() {
+        return month;
+    }
+
+    public int getDay() {
+        return day;
+    }
+
     public Order(LocalDate dateOfCreate, Person contactPerson, Address deliveryAddress,
                  String contactPhoneNumber, OrderStatusEnum orderStatus, ArrayList orderRow) {
         this.dateOfCreate = dateOfCreate;
@@ -50,7 +66,10 @@ public class Order implements Serializable {
                  String country, String postCode, String region, String city, String street, String numberOfHouse, String numberOfFlat,
                  String phoneNumber, int discount, String status) {
 
-        dateOfCreate = LocalDate.of(year, month, day);
+        //dateOfCreate = LocalDate.of(year, month, day);
+        this.year = year;
+        this.month = month;
+        this.day = day;
         contactPerson = new Person(new Passport(name, patronymic, surname));
         deliveryAddress = new Address(country, postCode, region, city, street, numberOfHouse, numberOfFlat);
         contactPhoneNumber = phoneNumber;

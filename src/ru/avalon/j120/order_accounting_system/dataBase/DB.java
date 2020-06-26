@@ -3,6 +3,7 @@ package ru.avalon.j120.order_accounting_system.dataBase;
 import ru.avalon.j120.order_accounting_system.auxiliary_classes.Order;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class DB implements AutoCloseable {
 
@@ -39,7 +40,6 @@ public class DB implements AutoCloseable {
     public void isConnected() throws SQLException, ClassNotFoundException {
         dbConn = getDbConnection();
         System.out.println(dbConn.isValid(1000));
-        // ?? dbConn.close();
     }
 
     /**
@@ -172,10 +172,94 @@ public class DB implements AutoCloseable {
     }
 
     //выборка данных из таблицы
+    public ArrayList<Order> getOrders(String table) throws ClassNotFoundException, SQLException {
+        ArrayList<Order> orderList = new ArrayList<>();
+
+        String sqlCmd = "SELECT * FROM " + table;
+        //String sqlCmd = "SELECT `year`, `month`, `day`, `name`, `patronymic`, `surname`, `country`, `postCode`, `region`, `city`, `street`, `numberOfHouse`, `numberOfFlat`, `phoneNumber`, `discount`, `status` FROM " + table;
+        Statement statement = getDbConnection().createStatement();
+        ResultSet res = statement.executeQuery(sqlCmd);
+
+        while (res.next()) {
+
+            orderList.add(new Order(
+                    res.getInt("year"),
+                    res.getInt("month"),
+                    res.getInt("day"),
+
+                    res.getString("name"),
+                    res.getString("patronymic"),
+                    res.getString("surname"),
+
+                    res.getString("country"),
+                    res.getString("postCode"),
+                    res.getString("region"),
+                    res.getString("city"),
+                    res.getString("street"),
+                    res.getString("numberOfHouse"),
+                    res.getString("numberOfFlat"),
+                    res.getString("phoneNumber"),
+
+                    res.getInt("discount"),
+                    res.getString("status")
+            ));
+
+        }
+        //res.close();
+        return orderList;
+    }
+
+    @Override
+    public void close() throws Exception {
+        dbConn.close();
+    }
+}
+/*
+//выборка данных из таблицы
+    public ArrayList<Order> getOrders(String table) throws ClassNotFoundException, SQLException {
+        ArrayList<Order> orderList = new ArrayList<>();
+
+        String sqlCmd = "SELECT * FROM " + table;
+        //String sqlCmd = "SELECT `year`, `month`, `day`, `name`, `patronymic`, `surname`, `country`, `postCode`, `region`, `city`, `street`, `numberOfHouse`, `numberOfFlat`, `phoneNumber`, `discount`, `status` FROM " + table;
+        Statement statement = getDbConnection().createStatement();
+        ResultSet res = statement.executeQuery(sqlCmd);
+
+        while (res.next()) {
+
+            orderList.add(new Order(
+                    res.getInt("year"),
+                    res.getInt("month"),
+                    res.getInt("day"),
+
+                    res.getString("name"),
+                    res.getString("patronymic"),
+                    res.getString("surname"),
+
+                    res.getString("country"),
+                    res.getString("postCode"),
+                    res.getString("region"),
+                    res.getString("city"),
+                    res.getString("street"),
+                    res.getString("numberOfHouse"),
+                    res.getString("numberOfFlat"),
+                    res.getString("phoneNumber"),
+
+                    res.getInt("discount"),
+                    res.getString("status")
+            ));
+
+        }
+        //res.close();
+        return orderList;
+    }
+ */
+/*
+ //выборка данных из таблицы
     public Order getOrder(String table) throws ClassNotFoundException, SQLException {
         Order order = null;
 
         String sqlCmd = "SELECT * FROM " + table;
+        //String sqlCmd = "SELECT `year`, `month`, `day`, `name`, `patronymic`, `surname`, `country`, `postCode`, `region`, `city`, `street`, `numberOfHouse`, `numberOfFlat`, `phoneNumber`, `discount`, `status` FROM " + table;
         Statement statement = getDbConnection().createStatement();
         ResultSet res = statement.executeQuery(sqlCmd);
 
@@ -204,9 +288,4 @@ public class DB implements AutoCloseable {
         }
         return order;
     }
-
-    @Override
-    public void close() throws Exception {
-        dbConn.close();
-    }
-}
+ */

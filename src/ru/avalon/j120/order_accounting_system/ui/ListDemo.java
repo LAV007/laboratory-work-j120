@@ -3,15 +3,10 @@ package ru.avalon.j120.order_accounting_system.ui;
 import ru.avalon.j120.order_accounting_system.auxiliary_classes.ListOfOrderItems;
 import ru.avalon.j120.order_accounting_system.auxiliary_classes.Order;
 import ru.avalon.j120.order_accounting_system.dataBase.DB;
-import ru.avalon.j120.order_accounting_system.person.Person;
-import ru.avalon.j120.order_accounting_system.person.address.Address;
-import ru.avalon.j120.order_accounting_system.person.passport.Passport;
 
 import java.awt.BorderLayout;
-import java.time.LocalDate;
+import java.util.ArrayList;
 import javax.swing.*;
-
-import static ru.avalon.j120.order_accounting_system.auxiliary_classes.OrderStatusEnum.PREPARED;
 
 public class ListDemo extends JFrame {
 	private JTable orders;
@@ -36,8 +31,12 @@ public class ListDemo extends JFrame {
 
 		try (DB db = new DB()) {
 
-			Order order = db.getOrder("orders");
-			ordersModel.addPosition(order);
+			/*Order order = db.getOrder("orders");
+			ordersModel.addPosition(order);*/
+
+			ArrayList<Order> order = db.getOrders("orders");
+
+			ordersModel.addPositions(order);
 
 		} catch (Exception throwable) {
 			throwable.printStackTrace();
@@ -80,17 +79,14 @@ public class ListDemo extends JFrame {
 		//Обрадотка нажатия на кнопку Добавить позицию
 		//addPosition.addActionListener(event -> tableModel.addPosition());
 		addPosition.addActionListener(event -> {
-
-
 			ProductDataDialog dlg = new ProductDataDialog(this);
 			dlg.setVisible(true);
 			if(dlg.isOkPressed()){
 				ListOfOrderItems listOfOrderItems = dlg.addRow();
 				tableModel.addPosition(listOfOrderItems);
 			}
+		});
 
-
-			});
 		//Обрботка события при нажатии на кнопку "Remove position" (удаление ВЫБРАННОЙ(ЫХ) строки)
 		removePosition.addActionListener(event ->{
 			int[] selectedPositions = orderItems.getSelectedRows();
