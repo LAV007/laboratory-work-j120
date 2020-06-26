@@ -2,8 +2,16 @@ package ru.avalon.j120.order_accounting_system.ui;
 
 import ru.avalon.j120.order_accounting_system.auxiliary_classes.ListOfOrderItems;
 import ru.avalon.j120.order_accounting_system.auxiliary_classes.Order;
+import ru.avalon.j120.order_accounting_system.dataBase.DB;
+import ru.avalon.j120.order_accounting_system.person.Person;
+import ru.avalon.j120.order_accounting_system.person.address.Address;
+import ru.avalon.j120.order_accounting_system.person.passport.Passport;
+
 import java.awt.BorderLayout;
+import java.time.LocalDate;
 import javax.swing.*;
+
+import static ru.avalon.j120.order_accounting_system.auxiliary_classes.OrderStatusEnum.PREPARED;
 
 public class ListDemo extends JFrame {
 	private JTable orders;
@@ -25,6 +33,15 @@ public class ListDemo extends JFrame {
 				ordersModel.addPosition(order);
 			}
 		});
+
+		try (DB db = new DB()) {
+
+			Order order = db.getOrder("orders");
+			ordersModel.addPosition(order);
+
+		} catch (Exception throwable) {
+			throwable.printStackTrace();
+		}
 
 		JPanel top = new JPanel(new BorderLayout());
 		JToolBar topTB = new JToolBar();

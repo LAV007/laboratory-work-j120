@@ -5,6 +5,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import ru.avalon.j120.order_accounting_system.person.Person;
 import ru.avalon.j120.order_accounting_system.person.address.Address;
+import ru.avalon.j120.order_accounting_system.person.passport.Passport;
+
+import static ru.avalon.j120.order_accounting_system.auxiliary_classes.OrderStatusEnum.PREPARED;
 
 public class Order implements Serializable {
 
@@ -40,6 +43,19 @@ public class Order implements Serializable {
         this.contactPhoneNumber = contactPhoneNumber;
         this.discountPercentage = discountPercentage;
         //this.orderStatus = orderStatus;
+    }
+
+    public Order(int year, int month, int day,
+                 String name, String patronymic, String surname,
+                 String country, String postCode, String region, String city, String street, String numberOfHouse, String numberOfFlat,
+                 String phoneNumber, int discount, String status) {
+
+        dateOfCreate = LocalDate.of(year, month, day);
+        contactPerson = new Person(new Passport(name, patronymic, surname));
+        deliveryAddress = new Address(country, postCode, region, city, street, numberOfHouse, numberOfFlat);
+        contactPhoneNumber = phoneNumber;
+        discountPercentage = discount;
+        orderStatus = OrderStatusEnum.valueOf(status);
     }
 
     public LocalDate getDateOfCreateY() {

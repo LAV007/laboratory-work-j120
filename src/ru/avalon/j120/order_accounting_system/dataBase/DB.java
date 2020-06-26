@@ -1,5 +1,7 @@
 package ru.avalon.j120.order_accounting_system.dataBase;
 
+import ru.avalon.j120.order_accounting_system.auxiliary_classes.Order;
+
 import java.sql.*;
 
 public class DB implements AutoCloseable {
@@ -84,12 +86,26 @@ public class DB implements AutoCloseable {
     public void createOrdersTable(String nameOfOrdersTable) throws ClassNotFoundException, SQLException {
         String strSql = "CREATE TABLE IF NOT EXISTS " + nameOfOrdersTable + " (" +
                 " id INT NOT NULL AUTO_INCREMENT," +
-                " dateOfCreate DATE NOT NULL," +
-                " contactPerson VARCHAR (100) NOT NULL," +
-                " deliveryAddress VARCHAR (100) NOT NULL," +
-                " contactPhoneNumber VARCHAR (100) NOT NULL," +
-                " discountPercentage VARCHAR (100) NOT NULL," +
-                " orderStatus VARCHAR (100) NOT NULL," +
+
+                " year INT NOT NULL," +
+                " month INT NOT NULL," +
+                " day INT NOT NULL," +
+
+                " name VARCHAR (100) NOT NULL," +
+                " patronymic VARCHAR (100) NOT NULL," +
+                " surname VARCHAR (100) NOT NULL," +
+
+                " country VARCHAR (100) NOT NULL," +
+                " postCode VARCHAR (100) NOT NULL," +
+                " region VARCHAR (100) NOT NULL," +
+                " city VARCHAR (100) NOT NULL," +
+                " street VARCHAR (100) NOT NULL," +
+                " numberOfHouse VARCHAR (100) NOT NULL," +
+                " numberOfFlat VARCHAR (100) NOT NULL," +
+                " phoneNumber VARCHAR (100) NOT NULL," +
+
+                " discount INT NOT NULL," +
+                " status VARCHAR (100) NOT NULL," +
                 " PRIMARY KEY (id)" +
                 ");";
         Statement statement = getDbConnection().createStatement();
@@ -114,6 +130,77 @@ public class DB implements AutoCloseable {
                 " FOREIGN KEY (orderId) REFERENCES orders(id));";
         Statement statement = getDbConnection().createStatement();
         statement.executeUpdate(strSql);
+    }
+
+    //добавление данных в таблицу order
+    public void addOrder(int id, int year, int month, int day,
+                         String name, String patronymic, String surname,
+                         String country, String postCode, String region, String city, String street, String numberOfHouse, String numberOfFlat,
+                         String phoneNumber, int discount, String status) throws ClassNotFoundException, SQLException {
+
+        String sqlCmd = "INSERT INTO orders (id, year, month, day, " +
+                "name, patronymic, surname, " +
+                "country, postCode, region, city, street, numberOfHouse, numberOfFlat, phoneNumber, " +
+                "discount, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; //знак вопроса это placeholder
+
+       PreparedStatement ps = getDbConnection().prepareStatement(sqlCmd);
+
+        ps.setInt(1, id);
+        ps.setInt(2, year);
+        ps.setInt(3, month);
+        ps.setInt(4, day);
+
+        ps.setString(5, name);
+        ps.setString(6, patronymic);
+        ps.setString(7, surname);
+
+        ps.setString(8, country);
+        ps.setString(9, postCode);
+        ps.setString(10, region);
+        ps.setString(11, city);
+        ps.setString(12, street);
+        ps.setString(13, numberOfHouse);
+        ps.setString(14, numberOfFlat);
+        ps.setString(15, phoneNumber);
+
+        ps.setInt(16, discount);
+        ps.setString(17, status);
+
+        ps.executeUpdate();
+    }
+
+    //выборка данных из таблицы
+    public Order getOrder(String table) throws ClassNotFoundException, SQLException {
+        Order order = null;
+
+        String sqlCmd = "SELECT * FROM " + table;
+        Statement statement = getDbConnection().createStatement();
+        ResultSet res = statement.executeQuery(sqlCmd);
+
+        while (res.next()) {
+            order = new Order(
+                    res.getInt("year"),
+                    res.getInt("month"),
+                    res.getInt("day"),
+
+                    res.getString("name"),
+                    res.getString("patronymic"),
+                    res.getString("surname"),
+
+                    res.getString("country"),
+                    res.getString("postCode"),
+                    res.getString("region"),
+                    res.getString("city"),
+                    res.getString("street"),
+                    res.getString("numberOfHouse"),
+                    res.getString("numberOfFlat"),
+                    res.getString("phoneNumber"),
+
+                    res.getInt("discount"),
+                    res.getString("status")
+                    );
+        }
+        return order;
     }
 
     @Override

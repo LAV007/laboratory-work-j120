@@ -90,14 +90,22 @@ public class ApplicationTest {
             e.printStackTrace();
         }
 
-
         try (DB db = new DB()) {
             db.isConnected();
             //db.createDataBase("orderAccountingSystem");
             //db.createProductsTable("products");
-            //db.createOrdersTable("orders");
-            db.createListOfOrderItemsTable("listOfOrderItems");
-            db.createNewTable("newTable2");
+            db.createOrdersTable("orders");
+            db.addOrder(6,
+                    2020, 06, 26,
+                    "John", "Edward", "Smith",
+                    "U.S.A", "15848", "Los Angeles", "Oxnard", "Gold\\'s Gym", "34", "7",
+                    "+79811895815", 10, "PREPARED");
+
+            String s = db.getOrder("orders").toString();
+
+            System.out.println(s);
+            //db.createListOfOrderItemsTable("listOfOrderItems");
+            //db.createNewTable("newTable2");
         } catch (Exception throwables) {
             throwables.printStackTrace();
         }
