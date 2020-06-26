@@ -95,7 +95,7 @@ public class ApplicationTest {
             //db.createDataBase("orderAccountingSystem");
             //db.createProductsTable("products");
             db.createOrdersTable("orders");
-            db.addOrder(6,
+            db.addOrder(7,
                     2020, 06, 26,
                     "John", "Edward", "Smith",
                     "U.S.A", "15848", "Los Angeles", "Oxnard", "Gold\\'s Gym", "34", "7",
@@ -109,6 +109,8 @@ public class ApplicationTest {
         } catch (Exception throwables) {
             throwables.printStackTrace();
         }
+
+
     }
 }
 /*

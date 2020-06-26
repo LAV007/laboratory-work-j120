@@ -25,7 +25,9 @@ public class DB implements AutoCloseable {
         String connStr = "jdbc:mysql://" + HOST + ":" + PORT + "/" + DB_NAME + "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
         Class.forName("com.mysql.cj.jdbc.Driver");
         //помещаем подключение в переменную:
-        dbConn = DriverManager.getConnection(connStr, LOGIN, PASS); //должно быть try with resource
+        if (dbConn == null) { //рациональное использование ресурсов подключения!!!
+            dbConn = DriverManager.getConnection(connStr, LOGIN, PASS);
+        }
         return dbConn;
     }
 
