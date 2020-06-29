@@ -171,6 +171,43 @@ public class DB implements AutoCloseable {
         ps.executeUpdate();
     }
 
+    //добавление данных в таблицу order
+    public void addOrderToDB(int year, int month, int day,
+                         String name, String patronymic, String surname,
+                         String country, String postCode, String region, String city, String street, String numberOfHouse, String numberOfFlat,
+                         String phoneNumber, int discount, String status) throws ClassNotFoundException, SQLException {
+
+        String sqlCmd = "INSERT INTO orders (year, month, day, " +
+                "name, patronymic, surname, " +
+                "country, postCode, region, city, street, numberOfHouse, numberOfFlat, phoneNumber, " +
+                "discount, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; //знак вопроса это placeholder
+
+        PreparedStatement ps = getDbConnection().prepareStatement(sqlCmd);
+
+
+        ps.setInt(1, year);
+        ps.setInt(2, month);
+        ps.setInt(3, day);
+
+        ps.setString(4, name);
+        ps.setString(5, patronymic);
+        ps.setString(6, surname);
+
+        ps.setString(7, country);
+        ps.setString(8, postCode);
+        ps.setString(9, region);
+        ps.setString(10, city);
+        ps.setString(11, street);
+        ps.setString(12, numberOfHouse);
+        ps.setString(13, numberOfFlat);
+        ps.setString(14, phoneNumber);
+
+        ps.setInt(15, discount);
+        ps.setString(16, status);
+
+        ps.executeUpdate();
+    }
+
     //выборка данных из таблицы
     public ArrayList<Order> getOrders(String table) throws ClassNotFoundException, SQLException {
         ArrayList<Order> orderList = new ArrayList<>();

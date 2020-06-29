@@ -27,7 +27,75 @@ public class OrderDataDialog extends MyAbstractModalDialog {
     private JTextField phoneNumberTextField;
     private JTextField discountTextField;
     private JTextField statusTextField;
+    private JComboBox comboBox;
 
+    public JComboBox getComboBox() {
+        return comboBox;
+    }
+
+    public JTextField getYearNumberTextField() {
+        return yearNumberTextField;
+    }
+
+    public JTextField getMothTextField() {
+        return mothTextField;
+    }
+
+    public JTextField getDayTextField() {
+        return dayTextField;
+    }
+
+    public JTextField getNameTextField() {
+        return nameTextField;
+    }
+
+    public JTextField getPatronymicTextField() {
+        return patronymicTextField;
+    }
+
+    public JTextField getSurnameTextField() {
+        return surnameTextField;
+    }
+
+    public JTextField getCountryTextField() {
+        return countryTextField;
+    }
+
+    public JTextField getPostCodeTextField() {
+        return postCodeTextField;
+    }
+
+    public JTextField getRegionTextField() {
+        return regionTextField;
+    }
+
+    public JTextField getCityTextField() {
+        return cityTextField;
+    }
+
+    public JTextField getStreetTextField() {
+        return streetTextField;
+    }
+
+    public JTextField getHouseNumberTextField() {
+        return houseNumberTextField;
+    }
+
+    public JTextField getFlatNumberTextField() {
+        return flatNumberTextField;
+    }
+
+    public JTextField getPhoneNumberTextField() {
+        return phoneNumberTextField;
+    }
+
+    public JTextField getDiscountTextField() {
+        return discountTextField;
+    }
+
+    public JTextField getStatusTextField() {
+        return statusTextField;
+    }
 
     public OrderDataDialog(Frame owner) {
         super(owner, "Adding new order");
@@ -166,16 +234,40 @@ public class OrderDataDialog extends MyAbstractModalDialog {
         jPanel.add(statusTextField);
         controlsPane.add(jPanel);
 
+        OrderStatusEnum[] items = OrderStatusEnum.values();
+        
+        /*String[] items = {
+                "PREPARED",
+                "SHIPPED",
+                "CANCELED"
+        };*/
+        jPanel = new JPanel(new FlowLayout((FlowLayout.LEFT)));
+        JLabel lblStatusComboBox = new JLabel("StatusFromComboBox");
+        lblStatusComboBox.setLabelFor(statusTextField);
+        jPanel.add(lblStatusComboBox);
+        comboBox = new JComboBox(items);
+        jPanel.add(comboBox);
+        controlsPane.add(jPanel);
+        comboBox.setEditable(true);
+
         pack();
     }
 
-   protected Order addRow(){
-        Order order = new Order(LocalDate.of(Integer.parseInt(yearNumberTextField.getText()), Integer.parseInt(mothTextField.getText()), Integer.parseInt(dayTextField.getText())),
-                                new Person(new Passport(nameTextField.getText(), patronymicTextField.getText(), surnameTextField.getText())),
-                                new Address(countryTextField.getText(), postCodeTextField.getText(), regionTextField.getText(), cityTextField.getText(),streetTextField.getText(),  houseNumberTextField.getText(), flatNumberTextField.getText()),
-                                phoneNumberTextField.getText(), Integer.parseInt(discountTextField.getText()), statusTextField.getText());
+    protected Order addRow(){
+        Order order = new Order(Integer.parseInt(yearNumberTextField.getText()), Integer.parseInt(mothTextField.getText()), Integer.parseInt(dayTextField.getText()),
+                nameTextField.getText(), patronymicTextField.getText(), surnameTextField.getText(),
+                countryTextField.getText(), postCodeTextField.getText(), regionTextField.getText(), cityTextField.getText(),streetTextField.getText(),  houseNumberTextField.getText(), flatNumberTextField.getText(),
+                phoneNumberTextField.getText(), Integer.parseInt(discountTextField.getText()), comboBox.getSelectedItem().toString());
         return order;
     }
+
+    /*protected Order addRow(){
+        Order order = new Order(Integer.parseInt(yearNumberTextField.getText()), Integer.parseInt(mothTextField.getText()), Integer.parseInt(dayTextField.getText()),
+                nameTextField.getText(), patronymicTextField.getText(), surnameTextField.getText(),
+                countryTextField.getText(), postCodeTextField.getText(), regionTextField.getText(), cityTextField.getText(),streetTextField.getText(),  houseNumberTextField.getText(), flatNumberTextField.getText(),
+                phoneNumberTextField.getText(), Integer.parseInt(discountTextField.getText()), statusTextField.getText());
+        return order;
+    }*/
 }
 
 

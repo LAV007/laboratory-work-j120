@@ -26,6 +26,33 @@ public class ListDemo extends JFrame {
 			if(dlg.isOkPressed()){
 				Order order = dlg.addRow();
 				ordersModel.addPosition(order);
+				try (DB db = new DB()){
+					//int id, int year, int month, int day,
+					//String name, String patronymic, String surname,
+					//String country, String postCode, String region, String city, String street, String numberOfHouse, String numberOfFlat,
+					//String phoneNumber, int discount, String status
+					db.addOrderToDB(Integer.parseInt(dlg.getYearNumberTextField().getText()),
+							Integer.parseInt(dlg.getMothTextField().getText()),
+							Integer.parseInt(dlg.getDayTextField().getText()),
+
+							dlg.getNameTextField().getText(),
+							dlg.getPatronymicTextField().getText(),
+							dlg.getSurnameTextField().getText(),
+
+							dlg.getCountryTextField().getText(),
+							dlg.getPostCodeTextField().getText(),
+							dlg.getRegionTextField().getText(),
+							dlg.getCityTextField().getText(),
+							dlg.getStreetTextField().getText(),
+							dlg.getHouseNumberTextField().getText(),
+							dlg.getFlatNumberTextField().getText(),
+							dlg.getPhoneNumberTextField().getText(),
+
+							Integer.parseInt(dlg.getDiscountTextField().getText()),
+							dlg.getComboBox().getSelectedItem().toString()); //dlg.getComboBox().getSelectedItem().toString() //dlg.getStatusTextField().getText()
+				} catch (Exception exception) {
+					exception.printStackTrace();
+				}
 			}
 		});
 

@@ -94,9 +94,9 @@ public class ApplicationTest {
             //db.createDataBase("orderAccountingSystem");
             //db.createProductsTable("products");
             db.createOrdersTable("orders");
-            db.addOrder(3,
-                    2020, 06, 26,
-                    "name3", "Edward", "surname",
+            db.addOrder(4,
+                    2020, 06, 28,
+                    "name4", "Edward", "surname",
                     "U.S.A", "15848", "Los Angeles", "Oxnard", "Gold\\'s Gym", "34", "7",
                     "+79811895815", 10, "PREPARED");
 
