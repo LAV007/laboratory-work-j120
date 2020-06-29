@@ -1,5 +1,6 @@
 package ru.avalon.j120.order_accounting_system.auxiliary_classes;
 
+import javax.swing.*;
 import java.io.Serializable;
 
 public class Product implements Serializable {
@@ -22,6 +23,13 @@ public class Product implements Serializable {
         this.color = color;
     }
 
+    public Product(String articleNumber, String name, String color, int price) {
+        this.articleNumber = articleNumber;
+        this.name = name;
+        setPrice(price);
+        this.color = color;
+    }
+
     public String getArticleNumber() {
         return articleNumber;
     }
@@ -32,8 +40,16 @@ public class Product implements Serializable {
         return stockBalance;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
     public void setPrice(int setPrice) {
-        if(setPrice <= 0) System.err.println("There can't be a zero or negative price");
+        if(setPrice <= 0) throw new IllegalArgumentException("There can't be a zero or negative price");
         else price = setPrice;
     }
 

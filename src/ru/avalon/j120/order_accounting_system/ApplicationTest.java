@@ -2,17 +2,21 @@ package ru.avalon.j120.order_accounting_system;
 
 import ru.avalon.j120.order_accounting_system.auxiliary_classes.*;
 import static ru.avalon.j120.order_accounting_system.auxiliary_classes.OrderStatusEnum.*;
-import ru.avalon.j120.order_accounting_system.configuration.Configuration;
+
+import ru.avalon.j120.order_accounting_system.dataBase.DB;
 import ru.avalon.j120.order_accounting_system.order_manager.OrderManager;
 import ru.avalon.j120.order_accounting_system.person.Person;
 import ru.avalon.j120.order_accounting_system.person.address.Address;
 import ru.avalon.j120.order_accounting_system.person.passport.Passport;
 import ru.avalon.j120.order_accounting_system.write_read_to_from_file.*;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class ApplicationTest {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
+
+
     try {
         // Создаю продукты:
         Product milk = new Product("m-354", "milk", "color", 10, 110);
@@ -30,7 +34,8 @@ public class ApplicationTest {
 
         //Добавляю новые продукты в список, чтобы записать список на склад:
         //Данный метод не позволяет добавить товар с существующим индексом.
-        wareHouse.addProdToList(new Product("f-858", "flowers", "yellow", 20, 420));
+        //wareHouse.addProdToList(new Product("f-858", "flowers", "yellow", 20, 420));
+        //wareHouse.addProdToList(new Product("f-858", "flowers", "yellow", 20, 420));
 
         //Записываю на склад список продуктов
         //Записываю склад с продуктами в файл:
@@ -63,9 +68,10 @@ public class ApplicationTest {
 
         //Создаю список, хранящий заказы
         ArrayList<OrderManager> orderManagers = new ArrayList<>();
+        orderManagers.add(orderManager);
 
         //Вывожу отдельный заказ:
-        System.out.println(orderManager.getOrders().get(0));
+        System.out.println(orderManagers.get(0));
         //Вывожу детальные данные о заказе (для заполнения таблици в окне программы)
         System.out.println(orderManager.getOrders().get(0).getContactPerson());
         System.out.println(orderManager.getOrders().get(0).getContactPhoneNumber());
@@ -82,6 +88,29 @@ public class ApplicationTest {
     } catch (Exception e){
             e.printStackTrace();
         }
+
+        try (DB db = new DB()) {
+            db.isConnected();
+            //db.createDataBase("orderAccountingSystem");
+            //db.createProductsTable("products");
+            db.createOrdersTable("orders");
+            db.addOrder(4,
+                    2020, 06, 28,
+                    "name4", "Edward", "surname",
+                    "U.S.A", "15848", "Los Angeles", "Oxnard", "Gold\\'s Gym", "34", "7",
+                    "+79811895815", 10, "PREPARED");
+
+            System.out.println("__________________________");
+            //String s = db.getOrders("orders").toString();
+
+            //System.out.println(s);
+            //db.createListOfOrderItemsTable("listOfOrderItems");
+            //db.createNewTable("newTable2");
+        } catch (Exception throwable) {
+            throwable.printStackTrace();
+        }
+
+
     }
 }
 /*

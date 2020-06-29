@@ -5,6 +5,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import ru.avalon.j120.order_accounting_system.person.Person;
 import ru.avalon.j120.order_accounting_system.person.address.Address;
+import ru.avalon.j120.order_accounting_system.person.passport.Passport;
+
+import static ru.avalon.j120.order_accounting_system.auxiliary_classes.OrderStatusEnum.PREPARED;
 
 public class Order implements Serializable {
 
@@ -15,6 +18,22 @@ public class Order implements Serializable {
     private int discountPercentage;
     private OrderStatusEnum orderStatus;
     public ArrayList<ListOfOrderItems> listOfOrderItems;
+
+    public int year;
+    public int month;
+    public int day;
+
+    public int getYear() {
+        return year;
+    }
+
+    public int getMonth() {
+        return month;
+    }
+
+    public int getDay() {
+        return day;
+    }
 
     public Order(LocalDate dateOfCreate, Person contactPerson, Address deliveryAddress,
                  String contactPhoneNumber, OrderStatusEnum orderStatus, ArrayList orderRow) {
@@ -32,6 +51,42 @@ public class Order implements Serializable {
         this.discountPercentage = discountPercentage;
     }
 
+    public Order(LocalDate dateOfCreate, Person contactPerson, Address deliveryAddress,
+                 String contactPhoneNumber, int discountPercentage, String orderStatus) {
+        this.dateOfCreate = dateOfCreate;
+        this.contactPerson = contactPerson;
+        this.deliveryAddress = deliveryAddress;
+        this.contactPhoneNumber = contactPhoneNumber;
+        this.discountPercentage = discountPercentage;
+        //this.orderStatus = orderStatus;
+    }
+
+    public Order(int year, int month, int day,
+                 String name, String patronymic, String surname,
+                 String country, String postCode, String region, String city, String street, String numberOfHouse, String numberOfFlat,
+                 String phoneNumber, int discount, String status) {
+
+        //dateOfCreate = LocalDate.of(year, month, day);
+        this.year = year;
+        this.month = month;
+        this.day = day;
+        contactPerson = new Person(new Passport(name, patronymic, surname));
+        deliveryAddress = new Address(country, postCode, region, city, street, numberOfHouse, numberOfFlat);
+        contactPhoneNumber = phoneNumber;
+        discountPercentage = discount;
+        orderStatus = OrderStatusEnum.valueOf(status);
+    }
+
+
+    public LocalDate getDateOfCreateY() {
+        return dateOfCreate;
+    }
+    public LocalDate getDateOfCreateM() {
+        return dateOfCreate;
+    }
+    public LocalDate getDateOfCreateD() {
+        return dateOfCreate;
+    }
     public LocalDate getDateOfCreate() {
         return dateOfCreate;
     }
@@ -52,6 +107,25 @@ public class Order implements Serializable {
     }
     public ArrayList getListOfOrderItems() {
         return listOfOrderItems;
+    }
+
+    public void setDateOfCreate(LocalDate dateOfCreate) {
+        this.dateOfCreate = dateOfCreate;
+    }
+    public void setContactPerson(Person contactPerson) {
+        this.contactPerson = contactPerson;
+    }
+    public void setDeliveryAddress(Address deliveryAddress) {
+        this.deliveryAddress = deliveryAddress;
+    }
+    public void setContactPhoneNumber(String contactPhoneNumber) {
+        this.contactPhoneNumber = contactPhoneNumber;
+    }
+    public void setDiscountPercentage(int discountPercentage) {
+        this.discountPercentage = discountPercentage;
+    }
+    public void setOrderStatus(OrderStatusEnum orderStatus) {
+        this.orderStatus = orderStatus;
     }
 
     /**

@@ -30,7 +30,6 @@ public class WriteReadProductToFromList {
 
     public ArrayList<Product> read() throws IOException{
         ArrayList<Product> products = new ArrayList<>();
-
         try (BufferedReader br = new BufferedReader(new FileReader(productsConfig))) {
             String line;
             while((line = br.readLine()) != null){
@@ -38,7 +37,7 @@ public class WriteReadProductToFromList {
                 Product product = new Product(/*articleNumber*/lin[0],/*name*/lin[1], /*color*/lin[2],
                             /*price*/Integer.parseInt(lin[3]),
                             /*stockBalance*/Integer.parseInt(lin[4]));
-                products.add(product); //exception Couldn't read the product" + lin[0]
+                products.add(product);
             }
             return products;
         }

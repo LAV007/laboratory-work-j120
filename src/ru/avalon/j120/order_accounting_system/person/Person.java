@@ -12,6 +12,10 @@ public class Person implements Serializable {
         this.pass = pass;
     }
 
+    public Passport getPass() {
+        return pass;
+    }
+
     @Override
     public String toString() {
         return pass.toString();
